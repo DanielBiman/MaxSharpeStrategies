@@ -1,0 +1,44 @@
+
+name: Run scheduled action
+
+on:
+  schedule:
+    # Run every 4 hours from midnight (00:00, 04:00, 08:00, 12:00, 16:00, 20:00)
+    - cron: "0 0,4,8,12,16,20 * * *"
+  
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
+jobs:
+  my_job:
+    name: Predict market and execute trade
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: execute code
+        env:
+          TOKEN: ${{secrets.TOKEN}}
+          GROUP_ID: ${{secrets.GROUP_ID}}
+          API_KEY: ${{secrets.API_KEY}}
+          API_SECRET: ${{secrets.API_SECRET}}
+          
+        run: |
+          python3 main.py
