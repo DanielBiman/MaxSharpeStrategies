@@ -13,6 +13,8 @@ from alpaca.trading.requests import MarketOrderRequest
 from alpaca.trading.enums import OrderSide, TimeInForce
 
 from utils import *
+
+# Choose here the Trading Environment class
 from RL_Model_0 import *
 
 # Secrets
@@ -29,7 +31,8 @@ investment = 100000
 symbol = "BTC-USD"
 #interval = "30m"
 
-data = yfinance.download(tickers=[symbol],period="max")
+data = yfinance.Ticker(symbol).history(period="1mo", interval="1d")
+#data = yfinance.download(tickers=[symbol],period="max")
 
 data = preprocess(data)
 
