@@ -1,0 +1,9 @@
+stable-baselines3 
+gym
+shimmy
+alpaca-py
+requests
+pandas
+numpy
+datetime
+yfinance
