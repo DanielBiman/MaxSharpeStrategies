@@ -31,8 +31,8 @@ investment = 100000
 symbol = "BTC-USD"
 #interval = "30m"
 
-data = yfinance.Ticker(symbol).history(period="1mo", interval="1d")
-#data = yfinance.download(tickers=[symbol],period="max")
+#data = yfinance.Ticker(symbol).history(period="1mo", interval="1d")
+data = yfinance.download(tickers=[symbol],period="1mo")
 
 data = preprocess(data)
 
