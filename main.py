@@ -63,7 +63,7 @@ if action == 0:
     
     #if qty > 0.5:qty=0.123
     ###### For TESTING############
-    qty = 1
+    qty = 0.1
 
     simple_order(qty,api_key,api_secret)
     message = "Buy " +  str(qty) + " " + str(symbol) + " at " + str(state['Close'])
