@@ -66,7 +66,7 @@ if action == 0:
     qty = 1
 
     simple_order(qty,api_key,api_secret)
-    message = "Buy " +  str(qty) + " " + str(symbol) + " at " + str(state[3])
+    message = "Buy " +  str(qty) + " " + str(symbol) + " at " + str(state['Close'])
     telegram_bot_sendtext(message,token,user_id)
 
 
@@ -85,7 +85,7 @@ elif action == 2:
         )
         trading_client.submit_order(order_data=market_order_data)
         
-    message = "Sell all at " + str(state[3])
+    message = "Sell all at " + str(state['Close'])
     telegram_bot_sendtext(message,token,user_id)
 
 else:
