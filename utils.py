@@ -2,10 +2,12 @@ def preprocess(data):
     import numpy as np
     short_window = 20
     long_window = 50
-
+    
+    data['Returns'] = data['Close'].pct_change()
     data['Short_MA'] = data['Close'].rolling(window=short_window).mean()
     data['Long_MA'] = data['Close'].rolling(window=long_window).mean()
     data['Price_Diff'] = data['Close'].diff()
+    
     data.dropna(inplace=True)
 
     # Check for NaN values
