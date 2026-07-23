@@ -81,7 +81,9 @@ elif action == 2:
             symbol=position.symbol,
             # qty=position.qty,
             # Reduced qty due to 200k order size limit from Alpaca
-            qty = [200000/float(position.current_price) if float(position.qty)*float(position.current_price) > 200000 else float(position.qty)]
+            # qty = [200000/float(position.current_price) if float(position.qty)*float(position.current_price) > 200000 else float(position.qty)] # SyntaxError: invalid syntax. Perhaps you forgot a comma?
+            # For testing:
+            qty = 0.1
 
             side=OrderSide.SELL,
             time_in_force=TimeInForce.GTC
