@@ -79,7 +79,10 @@ elif action == 2:
     for position in positions:
         market_order_data = MarketOrderRequest(
             symbol=position.symbol,
-            qty=position.qty,
+            # qty=position.qty,
+            # Reduced qty due to 200k order size limit from Alpaca
+            qty = [200000/float(position.current_price) if float(position.qty)*float(position.current_price) > 200000 else float(position.qty)]
+
             side=OrderSide.SELL,
             time_in_force=TimeInForce.GTC
         )
